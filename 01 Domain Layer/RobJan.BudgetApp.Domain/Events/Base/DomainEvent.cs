@@ -1,6 +1,5 @@
-﻿namespace RobJan.BudgetApp.Domain.Events.Base
+﻿namespace RobJan.BudgetApp.Domain.Events.Base;
+
+public abstract class DomainEvent
 {
-    internal abstract class DomainEvent
-    {
-    }
 }

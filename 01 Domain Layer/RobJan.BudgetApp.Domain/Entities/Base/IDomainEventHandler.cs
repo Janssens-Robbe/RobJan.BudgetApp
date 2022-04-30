@@ -1,10 +1,9 @@
 ﻿using RobJan.BudgetApp.Domain.Events.Base;
 
-namespace RobJan.BudgetApp.Domain.Entities.Base
+namespace RobJan.BudgetApp.Domain.Entities.Base;
+
+internal interface IDomainEventHandler<TEvent>
+    where TEvent : DomainEvent
 {
-    internal interface IDomainEventHandler<T>
-        where T : DomainEvent
-    {
-        internal void Handle(T @event);
-    }
+    internal void Handle(TEvent @event);
 }
