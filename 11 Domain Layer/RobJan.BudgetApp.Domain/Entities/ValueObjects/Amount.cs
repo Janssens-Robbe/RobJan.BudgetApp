@@ -1,10 +1,9 @@
-﻿namespace RobJan.BudgetApp.Domain.Entities.ValueObjects;
+﻿using RobJan.BudgetApp.Common.Constants.Entities.ValueObjects;
+
+namespace RobJan.BudgetApp.Domain.Entities.ValueObjects;
 
 public class Amount : ValueObject<Amount>
 {
-    protected Amount(decimal value, string currencyCode)
-        : this(value, Currency.FromCode(currencyCode)) { }
-
     protected Amount(decimal value, Currency currency)
     {
         Value = value;
@@ -14,7 +13,7 @@ public class Amount : ValueObject<Amount>
     public decimal Value { get; private init; }
     public Currency Currency { get; private init; }
 
-    public static Amount From(decimal value, string currencyCode) => new(value, currencyCode);
+    public static Amount From(decimal value, string currencyCode) => new(value, Currency.FromCode(currencyCode));
 
     public static Amount From(decimal value, Currency currency) => new(value, currency);
 
@@ -24,14 +23,14 @@ public class Amount : ValueObject<Amount>
     public static Amount operator +(Amount a, Amount b)
     {
         return a.Currency != b.Currency
-            ? throw new ArgumentException("Cannot add amounts with different currencies")
+            ? throw new InvalidOperationException(AmountConstants.Exceptions.CanNotAddWithDifferentCurrencies)
             : new(a.Value + b.Value, a.Currency);
     }
 
     public static Amount operator -(Amount a, Amount b)
     {
         return a.Currency != b.Currency
-            ? throw new ArgumentException("Cannot subtract amounts with different currencies")
+            ? throw new InvalidOperationException(AmountConstants.Exceptions.CanNotSubtracWithDifferentCurrency)
             : new(a.Value - b.Value, a.Currency);
     }
 

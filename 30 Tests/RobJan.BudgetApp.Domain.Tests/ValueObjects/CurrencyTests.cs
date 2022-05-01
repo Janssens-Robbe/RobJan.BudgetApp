@@ -53,6 +53,36 @@ internal class CurrencyTests : TestBase
     }
 
     [Test]
+    public void GetHashCode_ReturnsSameHashCode_WithSameCode()
+    {
+        // Arrange
+        var code = Fixture.CreateString(3);
+        var currency1 = Currency.FromCode(code);
+        var currency2 = Currency.FromCode(code);
+
+        // Act
+        var result1 = currency1.GetHashCode();
+        var result2 = currency2.GetHashCode();
+
+        // Assert
+        result1.Should().Be(result2);
+    }
+
+    [Test]
+    public void ToString_ReturnsCode()
+    {
+        // Arrange
+        var code = Fixture.CreateString(3);
+        var currency = Currency.FromCode(code);
+
+        // Act
+        var result = currency.ToString();
+
+        // Assert
+        result.Should().Be(code);
+    }
+
+    [Test]
     public void Equals_ReturnsTrue_WithSameCode()
     {
         // Arrange
@@ -127,7 +157,7 @@ internal class CurrencyTests : TestBase
     }
 
     [Test]
-    public void GetHashCode_ReturnsSameHashCode_WithSameCode()
+    public void Equals_ReturnsTrue_ForBoxedWithSameCode()
     {
         // Arrange
         var code = Fixture.CreateString(3);
@@ -135,24 +165,98 @@ internal class CurrencyTests : TestBase
         var currency2 = Currency.FromCode(code);
 
         // Act
-        var result1 = currency1.GetHashCode();
-        var result2 = currency2.GetHashCode();
+        var result = currency1.Equals((object)currency2);
 
         // Assert
-        result1.Should().Be(result2);
+        result.Should().BeTrue();
     }
 
     [Test]
-    public void ToString_ReturnsCode()
+    public void Equals_ReturnsFalse_ForBoxedWithDifferentCode()
+    {
+        // Arrange
+        var code1 = Fixture.CreateString(3);
+        var code2 = Fixture.CreateString(3);
+        var currency1 = Currency.FromCode(code1);
+        var currency2 = Currency.FromCode(code2);
+
+        // Act
+        var result = currency1.Equals((object)currency2);
+
+        // Assert
+        result.Should().BeFalse();
+    }
+
+    [Test]
+    public void Equals_ReturnsFalse_ForBoxedWithNull()
     {
         // Arrange
         var code = Fixture.CreateString(3);
         var currency = Currency.FromCode(code);
 
         // Act
-        var result = currency.ToString();
+        var result = currency.Equals((object?)null);
 
         // Assert
-        result.Should().Be(code);
+        result.Should().BeFalse();
+    }
+
+    [Test]
+    public void EqualsOperator_RetursTrue_WithSameCode()
+    {
+        // Arrange
+        var code = Fixture.CreateString(3);
+        var currency1 = Currency.FromCode(code);
+        var currency2 = Currency.FromCode(code);
+
+        // Act
+        var result = currency1 == currency2;
+
+        // Assert
+        result.Should().BeTrue();
+    }
+
+    [Test]
+    public void NotEqualsOperator_ReturnsTrue_WithDifferentCode()
+    {
+        // Arrange
+        var code1 = Fixture.CreateString(3);
+        var code2 = Fixture.CreateString(3);
+        var currency1 = Currency.FromCode(code1);
+        var currency2 = Currency.FromCode(code2);
+
+        // Act
+        var result = currency1 != currency2;
+
+        // Assert
+        result.Should().BeTrue();
+    }
+
+    [Test]
+    public void EqualsOperator_ReturnsFalse_WithNull()
+    {
+        // Arrange
+        var code = Fixture.CreateString(3);
+        var currency = Currency.FromCode(code);
+
+        // Act
+        var result = currency == null;
+
+        // Assert
+        result.Should().BeFalse();
+    }
+
+    [Test]
+    public void EqualsOperator_ReturnsTrue_WithBothSidesNull()
+    {
+        // Arrange
+        Currency? currency1 = null;
+        Currency? currency2 = null;
+
+        // Act
+        var result = currency1 == currency2;
+
+        // Assert
+        result.Should().BeTrue();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace RobJan.BudgetApp.Domain.Entities.Contact;
+﻿using RobJan.BudgetApp.Domain.Entities.Base;
+
+namespace RobJan.BudgetApp.Domain.Entities.Contact;
 
 public class ContactType : Entity
 {

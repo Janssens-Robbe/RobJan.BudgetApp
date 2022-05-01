@@ -1,4 +1,4 @@
-﻿namespace RobJan.BudgetApp.Domain.Entities;
+﻿namespace RobJan.BudgetApp.Domain.Entities.Base;
 
 public abstract class Entity
 {

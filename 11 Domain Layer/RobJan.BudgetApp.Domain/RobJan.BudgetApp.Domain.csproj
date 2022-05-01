@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Account\" />
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\01 Common\RobJan.BudgetApp.Common.Constants\RobJan.BudgetApp.Common.Constants.csproj" />
   </ItemGroup>
 
