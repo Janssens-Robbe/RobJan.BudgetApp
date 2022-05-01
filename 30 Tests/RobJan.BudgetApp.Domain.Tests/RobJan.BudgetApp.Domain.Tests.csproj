@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\01 Common\RobJan.BudgetApp.Common.Constants\RobJan.BudgetApp.Common.Constants.csproj" />
     <ProjectReference Include="..\..\11 Domain Layer\RobJan.BudgetApp.Domain\RobJan.BudgetApp.Domain.csproj" />
+    <ProjectReference Include="..\..\RobJan.BudgetApp.Common.Tests\RobJan.BudgetApp.Common.Tests.csproj" />
   </ItemGroup>
 
 </Project>

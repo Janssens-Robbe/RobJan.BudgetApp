@@ -1,17 +1,24 @@
 ﻿namespace RobJan.BudgetApp.Domain.Entities.ValueObjects;
 
-public class Amount : ValueObject, IEquatable<Amount>
+public class Amount : ValueObject<Amount>
 {
-    public Amount(decimal value, string currency)
-    {
-        if (currency.Length != 3) throw new ArgumentException("Currency must be 3 characters long", nameof(currency));
+    protected Amount(decimal value, string currencyCode)
+        : this(value, Currency.FromCode(currencyCode)) { }
 
+    protected Amount(decimal value, Currency currency)
+    {
         Value = value;
         Currency = currency;
     }
 
     public decimal Value { get; private init; }
-    public string Currency { get; private init; }
+    public Currency Currency { get; private init; }
+
+    public static Amount From(decimal value, string currencyCode) => new(value, currencyCode);
+
+    public static Amount From(decimal value, Currency currency) => new(value, currency);
+
+    public override string ToString() => $"{Value} {Currency}";
 
     #region Math
     public static Amount operator +(Amount a, Amount b)
@@ -37,21 +44,11 @@ public class Amount : ValueObject, IEquatable<Amount>
     #endregion Math
 
     #region Equality
-    public static bool operator ==(Amount a, decimal b) => a.Value == b;
-    public static bool operator !=(Amount a, decimal b) => a.Value != b;
-
-    public bool Equals(Amount? other) => Equals(other);
-
-    public override bool Equals(object? obj)
+    public override bool Equals(Amount? other)
     {
-        if (obj is null)
-            return false;
-
-        if (obj is not Amount amount)
-            return false;
-
-        return Value == amount.Value
-            && Currency == amount.Currency;
+        if (other is null) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Value == other.Value && Currency == other.Currency;
     }
 
     public override int GetHashCode() => HashCode.Combine(Value, Currency);
