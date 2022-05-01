@@ -16,30 +16,30 @@ public class Amount : ValueObject, IEquatable<Amount>
     #region Math
     public static Amount operator +(Amount a, Amount b)
     {
-        if (a.Currency != b.Currency) throw new ArgumentException("Cannot add amounts with different currencies");
-        return new(a.Value + b.Value, a.Currency);
+        return a.Currency != b.Currency
+            ? throw new ArgumentException("Cannot add amounts with different currencies")
+            : new(a.Value + b.Value, a.Currency);
     }
 
     public static Amount operator -(Amount a, Amount b)
     {
-        if (a.Currency != b.Currency) throw new ArgumentException("Cannot subtract amounts with different currencies");
-        return new(a.Value - b.Value, a.Currency);
+        return a.Currency != b.Currency
+            ? throw new ArgumentException("Cannot subtract amounts with different currencies")
+            : new(a.Value - b.Value, a.Currency);
     }
 
     public static Amount operator *(Amount a, int b) => new(a.Value * b, a.Currency);
-
     public static Amount operator *(Amount a, double b) => new(a.Value * (decimal)b, a.Currency);
-
     public static Amount operator *(Amount a, decimal b) => new(a.Value * b, a.Currency);
-
     public static Amount operator /(Amount a, int b) => new(a.Value / b, a.Currency);
-
     public static Amount operator /(Amount a, double b) => new(a.Value / (decimal)b, a.Currency);
-
     public static Amount operator /(Amount a, decimal b) => new(a.Value / b, a.Currency);
     #endregion Math
 
     #region Equality
+    public static bool operator ==(Amount a, decimal b) => a.Value == b;
+    public static bool operator !=(Amount a, decimal b) => a.Value != b;
+
     public bool Equals(Amount? other) => Equals(other);
 
     public override bool Equals(object? obj)

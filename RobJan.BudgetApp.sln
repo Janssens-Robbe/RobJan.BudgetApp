@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Domain Layer", "01 Domain Layer", "{1E9606D9-07F0-4C90-A1CC-1526587D0296}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11 Domain Layer", "11 Domain Layer", "{1E9606D9-07F0-4C90-A1CC-1526587D0296}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Application Layer", "02 Application Layer", "{C69EA3C9-AD3C-4409-BF6E-D9318DFCD9F3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "12 Application Layer", "12 Application Layer", "{C69EA3C9-AD3C-4409-BF6E-D9318DFCD9F3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Infrastructure Layer", "03 Infrastructure Layer", "{282B1864-96E6-4511-B91A-19E18B810155}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "13 Infrastructure Layer", "13 Infrastructure Layer", "{282B1864-96E6-4511-B91A-19E18B810155}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Common", "04 Common", "{21393337-26C0-4515-94EE-50AD5252B0A7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Common", "01 Common", "{21393337-26C0-4515-94EE-50AD5252B0A7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10 Front End", "10 Front End", "{3FB56930-01C1-41C1-9BD7-CB3A434BA1C0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20 Front End", "20 Front End", "{3FB56930-01C1-41C1-9BD7-CB3A434BA1C0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20 Tests", "20 Tests", "{907C801A-2C59-4F79-8C6D-0D46F46BC6C6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30 Tests", "30 Tests", "{907C801A-2C59-4F79-8C6D-0D46F46BC6C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobJan.BudgetApp.Domain", "01 Domain Layer\RobJan.BudgetApp.Domain\RobJan.BudgetApp.Domain.csproj", "{429D77D0-FEB2-42DC-9FD4-5CC79E2EFBC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobJan.BudgetApp.Domain", "11 Domain Layer\RobJan.BudgetApp.Domain\RobJan.BudgetApp.Domain.csproj", "{429D77D0-FEB2-42DC-9FD4-5CC79E2EFBC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobJan.BudgetApp.Domain.Tests", "20 Tests\RobJan.BudgetApp.Domain.Tests\RobJan.BudgetApp.Domain.Tests.csproj", "{48312FAF-986D-4AB2-9303-ACB1E09AE3BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobJan.BudgetApp.Domain.Tests", "30 Tests\RobJan.BudgetApp.Domain.Tests\RobJan.BudgetApp.Domain.Tests.csproj", "{48312FAF-986D-4AB2-9303-ACB1E09AE3BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobJan.BudgetApp.Common", "RobJan.BudgetApp.Common\RobJan.BudgetApp.Common.csproj", "{AC23C019-CD88-4682-915F-93450C53F193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobJan.BudgetApp.Common", "01 Common\RobJan.BudgetApp.Common\RobJan.BudgetApp.Common.csproj", "{AC23C019-CD88-4682-915F-93450C53F193}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobJan.BudgetApp.Common.Constants", "01 Common\RobJan.BudgetApp.Common.Constants\RobJan.BudgetApp.Common.Constants.csproj", "{E2A89D4C-3CF5-4E4A-8F37-E681019538C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{AC23C019-CD88-4682-915F-93450C53F193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC23C019-CD88-4682-915F-93450C53F193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC23C019-CD88-4682-915F-93450C53F193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A89D4C-3CF5-4E4A-8F37-E681019538C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A89D4C-3CF5-4E4A-8F37-E681019538C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A89D4C-3CF5-4E4A-8F37-E681019538C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A89D4C-3CF5-4E4A-8F37-E681019538C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{429D77D0-FEB2-42DC-9FD4-5CC79E2EFBC4} = {1E9606D9-07F0-4C90-A1CC-1526587D0296}
 		{48312FAF-986D-4AB2-9303-ACB1E09AE3BD} = {907C801A-2C59-4F79-8C6D-0D46F46BC6C6}
 		{AC23C019-CD88-4682-915F-93450C53F193} = {21393337-26C0-4515-94EE-50AD5252B0A7}
+		{E2A89D4C-3CF5-4E4A-8F37-E681019538C7} = {21393337-26C0-4515-94EE-50AD5252B0A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {615FFCF9-53BB-4A28-AC01-46C203804903}
