@@ -2,7 +2,7 @@
 
 namespace RobJan.BudgetApp.Domain.Entities.Contact;
 
-public class ContactType : Entity
+public class ContactType : Entity<ContactType>
 {
     public string Name { get; internal set; }
     public ContactTypeCategory Category { get; internal set; }

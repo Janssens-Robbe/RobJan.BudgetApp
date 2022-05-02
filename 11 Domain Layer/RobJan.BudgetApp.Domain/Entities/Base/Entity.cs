@@ -1,6 +1,7 @@
 ﻿namespace RobJan.BudgetApp.Domain.Entities.Base;
 
-public abstract class Entity
+public abstract class Entity<TEntity>
+    where TEntity : Entity<TEntity>
 {
-    public Guid Id { get; private init; } = Guid.NewGuid();
+    public EntityId<TEntity> Id { get; private init; } = EntityId<TEntity>.New();
 }

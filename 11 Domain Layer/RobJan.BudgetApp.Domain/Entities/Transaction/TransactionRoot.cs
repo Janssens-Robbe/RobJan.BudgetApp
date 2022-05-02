@@ -4,7 +4,7 @@ using RobJan.BudgetApp.Domain.Exceptions;
 
 namespace RobJan.BudgetApp.Domain.Entities.Transaction;
 
-public class TransactionRoot : AggregateRoot
+public class TransactionRoot : AggregateRoot<TransactionRoot>
 {
     #region State
     public TransactionAmount Amount { get; private set; }
@@ -18,7 +18,7 @@ public class TransactionRoot : AggregateRoot
 
     protected override void EnsureValidation()
     {
-        if (TimeStamp == default(DateTime))
+        if (TimeStamp == default)
             throw new InvalidStateException("TimeStamp is not set", nameof(TimeStamp));
     }
 

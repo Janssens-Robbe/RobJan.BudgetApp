@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\01 Common\RobJan.BudgetApp.Common.Constants\RobJan.BudgetApp.Common.Constants.csproj" />
+    <ProjectReference Include="..\..\01 Common\RobJan.BudgetApp.Common\RobJan.BudgetApp.Common.csproj" />
   </ItemGroup>
 
 </Project>

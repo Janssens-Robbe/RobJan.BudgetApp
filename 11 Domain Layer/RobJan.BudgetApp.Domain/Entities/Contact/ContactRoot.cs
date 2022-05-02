@@ -2,7 +2,7 @@
 
 namespace RobJan.BudgetApp.Domain.Entities.Contact;
 
-public class ContactRoot : AggregateRoot
+public class ContactRoot : AggregateRoot<ContactRoot>
 {
     #region State
     public string Name { get; set; }

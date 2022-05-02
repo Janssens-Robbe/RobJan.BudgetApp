@@ -2,7 +2,8 @@
 
 namespace RobJan.BudgetApp.Domain.Entities.Base;
 
-public abstract class AggregateRoot : Entity
+public abstract class AggregateRoot<TAggregateRoot> : Entity<TAggregateRoot>
+    where TAggregateRoot : AggregateRoot<TAggregateRoot>
 {
     private readonly List<DomainEvent> _changes = new();
 
