@@ -11,19 +11,17 @@ public abstract class AggregateRoot<TAggregateRoot> : Entity<TAggregateRoot>
 
     protected AggregateRoot(IEnumerable<DomainEvent> changes)
     {
-        _changes = new(changes);
-        Rebuild();
+        _changes = changes.ToList();
     }
 
-    private protected void Rebuild()
+    private protected void Build()
     {
-        Reset();
         foreach (var @event in _changes)
+        {
             Handle(@event);
-        EnsureValidation();
+            EnsureValidation();
+        }
     }
-
-    private protected abstract void Reset();
 
     protected void Apply<TEvent>(TEvent @event)
         where TEvent : DomainEvent
@@ -37,9 +35,18 @@ public abstract class AggregateRoot<TAggregateRoot> : Entity<TAggregateRoot>
         where TEvent : DomainEvent
     {
         if (this is not IDomainEventHandler<TEvent> eventHander)
-            throw new NotImplementedException($"{GetType().Name} does not have an implementation for event handler {typeof(IDomainEventHandler<TEvent>).Name}");
+            throw new NotImplementedException($"{GetType().Name} does not have an implementation for event handler for {typeof(TEvent).Name}");
 
         eventHander.Handle(@event);
+    }
+
+    private void Handle(DomainEvent @event)
+    {
+        var handler = typeof(IDomainEventHandler<>).MakeGenericType(@event.GetType());
+        if (!handler.IsInstanceOfType(this))
+            throw new NotImplementedException($"{GetType().Name} does not have an implementation for event handler for {@event.GetType().Name}");
+
+        handler.GetMethod("Handle")!.Invoke(this, new[] { @event });
     }
 
     protected abstract void EnsureValidation();

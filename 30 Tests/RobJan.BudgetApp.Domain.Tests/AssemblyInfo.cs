@@ -1,4 +1,4 @@
 ﻿using NUnit.Framework;
 
-[assembly: Timeout(100)]
+[assembly: Timeout(1000)]
 

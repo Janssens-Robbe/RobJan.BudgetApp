@@ -11,6 +11,8 @@ public class TransactionAmount : Amount
         if (value < 0) throw new ArgumentException(TransactionAmountConstants.Exceptions.ValueIsBelowZero, nameof(value));
     }
 
+    public static TransactionAmount Empty { get; } = new(0, Currency.Unknown);
+
     public static new TransactionAmount From(decimal value, string currencyCode) => new(value, Currency.FromCode(currencyCode));
 
     public static new TransactionAmount From(decimal value, Currency currency) => new(value, currency);

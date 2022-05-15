@@ -10,6 +10,4 @@ public class ContactRoot : AggregateRoot<ContactRoot>
     #endregion State
 
     protected override void EnsureValidation() => throw new NotImplementedException();
-
-    private protected override void Reset() => throw new NotImplementedException();
 }

@@ -2,7 +2,7 @@
 
 namespace RobJan.BudgetApp.Domain.Entities.ValueObjects;
 
-public class Currency : ValueObject<Currency>
+public class Currency : ValueObject<Currency>, IEquatable<string>
 {
     private Currency(string code)
     {
@@ -13,7 +13,11 @@ public class Currency : ValueObject<Currency>
 
     public string Code { get; private init; }
 
+    public static Currency Unknown { get; } = new Currency("???");
+
     public static Currency FromCode(string code) => new(code);
+
+    public static implicit operator Currency(string code) => new(code);
 
     public override string ToString() => Code;
 
@@ -26,5 +30,8 @@ public class Currency : ValueObject<Currency>
     }
 
     public override int GetHashCode() => Code.GetHashCode();
+
+    public bool Equals(string? other) => Code == other;
+
     #endregion Equality
 }

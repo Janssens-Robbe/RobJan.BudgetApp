@@ -5,5 +5,5 @@ namespace RobJan.BudgetApp.Domain.Entities.Base;
 internal interface IDomainEventHandler<TEvent>
     where TEvent : DomainEvent
 {
-    internal void Handle(TEvent @event);
+    void Handle(TEvent @event);
 }

@@ -1,6 +1,6 @@
 ﻿namespace RobJan.BudgetApp.Domain.Entities.Base;
 
-public struct EntityId<TEntity>
+public struct EntityId<TEntity> : IEquatable<EntityId<TEntity>>
     where TEntity : Entity<TEntity>
 {
     private readonly Guid _guid;
@@ -23,9 +23,13 @@ public struct EntityId<TEntity>
 
     public Guid Guid => _guid;
 
+    internal static EntityId<TEntity> Empty { get; } = new(Guid.Empty);
+
+    public static bool operator ==(EntityId<TEntity> left, EntityId<TEntity> right) => left.Equals(right);
+    public static bool operator !=(EntityId<TEntity> left, EntityId<TEntity> right) => !(left == right);
+
     internal static EntityId<TEntity> New() => new(Guid.NewGuid());
     internal static EntityId<TEntity> FromGuid(Guid guid) => new(guid);
-
     internal static EntityId<TEntity> FromHash(string hash)
     {
         var base64String = hash
@@ -47,4 +51,8 @@ public struct EntityId<TEntity>
     }
 
     public override string ToString() => GetHash();
+
+    public bool Equals(EntityId<TEntity> other) => _guid == other._guid && _typeId.SequenceEqual(other._typeId);
+    public override bool Equals(object? obj) => obj is EntityId<TEntity> id && Equals(id);
+    public override int GetHashCode() => HashCode.Combine(_guid, _typeId);
 }
