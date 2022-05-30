@@ -19,7 +19,7 @@ public class TransactionRoot : AggregateRoot<TransactionRoot>, IDomainEventHandl
     #region State
     public TransactionAmount Amount { get; private set; } = TransactionAmount.Empty;
     public TransactionType Type { get; private set; } = TransactionType.Unknown;
-    public DateTime TimeStamp { get; private set; }
+    public DateOnly Date { get; private set; }
 
     public AccountRoot? ReceivingAccount { get; private set; }
     public EntityId<AccountRoot>? ReceivingAccountId { get; private set; }
@@ -37,7 +37,7 @@ public class TransactionRoot : AggregateRoot<TransactionRoot>, IDomainEventHandl
         decimal amount,
         string currency,
         TransactionType type,
-        DateTime timeStamp,
+        DateOnly date,
         EntityId<AccountRoot>? receivingAccountId,
         EntityId<AccountRoot>? sendingAccountId)
     {
@@ -48,7 +48,7 @@ public class TransactionRoot : AggregateRoot<TransactionRoot>, IDomainEventHandl
             amount,
             currency,
             type,
-            timeStamp,
+            date,
             receivingAccountId,
             sendingAccountId));
 
@@ -60,7 +60,7 @@ public class TransactionRoot : AggregateRoot<TransactionRoot>, IDomainEventHandl
         Id = @event.Id;
         Amount = TransactionAmount.From(@event.Amount, @event.Currency);
         Type = @event.Type;
-        TimeStamp = @event.TimeStamp;
+        Date = @event.Date;
         ReceivingAccountId = @event.ReceivingAccountId;
         SendingAccountId = @event.SendingAccountId;
     }
@@ -69,8 +69,8 @@ public class TransactionRoot : AggregateRoot<TransactionRoot>, IDomainEventHandl
 
     protected override void EnsureValidation()
     {
-        if (TimeStamp == default)
-            throw new InvalidStateException("TimeStamp is not set", nameof(TimeStamp));
+        if (Date == default)
+            throw new InvalidStateException("TimeStamp is not set", nameof(Date));
 
         if (Id == EntityId<TransactionRoot>.Empty)
             throw new InvalidStateException("Id is not set", nameof(Id));

@@ -11,7 +11,7 @@ public class TransactionRootCreated : DomainEvent, ICreationDomainEvent<Transact
         decimal amount,
         string currency,
         TransactionType type,
-        DateTime timeStamp,
+        DateOnly date,
         EntityId<AccountRoot>? receivingAccountId,
         EntityId<AccountRoot>? sendingAccountId)
     {
@@ -19,7 +19,7 @@ public class TransactionRootCreated : DomainEvent, ICreationDomainEvent<Transact
         Amount = amount;
         Currency = currency;
         Type = type;
-        TimeStamp = timeStamp;
+        Date = date;
         ReceivingAccountId = receivingAccountId;
         SendingAccountId = sendingAccountId;
     }
@@ -28,7 +28,7 @@ public class TransactionRootCreated : DomainEvent, ICreationDomainEvent<Transact
     public decimal Amount { get; init; }
     public string Currency { get; init; }
     public TransactionType Type { get; init; }
-    public DateTime TimeStamp { get; init; }
+    public DateOnly Date { get; init; }
     public EntityId<AccountRoot>? ReceivingAccountId { get; init; }
     public EntityId<AccountRoot>? SendingAccountId { get; init; }
 }

@@ -20,18 +20,18 @@ internal class TransactionRootTests : TestBase
         var amount = Fixture.Create<decimal>();
         var currency = Fixture.CreateString(3);
         var type = TransactionType.Receive;
-        var timeStamp = Fixture.Create<DateTime>();
+        var date = Fixture.Create<DateOnly>();
         var receivingAccountId = EntityId<AccountRoot>.New();
 
         // Act
-        var result = TransactionRoot.Create(amount, currency, type, timeStamp, receivingAccountId, null);
+        var result = TransactionRoot.Create(amount, currency, type, date, receivingAccountId, null);
 
         // Assert
         result.Id.Should().NotBe(EntityId<TransactionRoot>.Empty);
         result.Amount.Value.Should().Be(amount);
         result.Amount.Currency.Code.Should().Be(currency);
         result.Type.Should().Be(type);
-        result.TimeStamp.Should().Be(timeStamp);
+        result.Date.Should().Be(date);
         result.ReceivingAccountId.Should().Be(receivingAccountId);
         result.SendingAccountId.Should().Be(null);
     }
@@ -44,10 +44,10 @@ internal class TransactionRootTests : TestBase
         var amount = Fixture.Create<decimal>();
         var currency = Fixture.CreateString(3);
         var type = TransactionType.Receive;
-        var timeStamp = Fixture.Create<DateTime>();
+        var date = Fixture.Create<DateOnly>();
         var receivingAccountId = EntityId<AccountRoot>.New();
 
-        var @event = new TransactionRootCreated(id, amount, currency, type, timeStamp, receivingAccountId, null);
+        var @event = new TransactionRootCreated(id, amount, currency, type, date, receivingAccountId, null);
         var changes = new List<DomainEvent>() { @event };
 
         // Act
@@ -58,7 +58,7 @@ internal class TransactionRootTests : TestBase
         result.Amount.Value.Should().Be(amount);
         result.Amount.Currency.Code.Should().Be(currency);
         result.Type.Should().Be(type);
-        result.TimeStamp.Should().Be(timeStamp);
+        result.Date.Should().Be(date);
         result.ReceivingAccountId.Should().Be(receivingAccountId);
         result.SendingAccountId.Should().Be(null);
     }
